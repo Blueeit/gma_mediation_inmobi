@@ -1,0 +1,54 @@
+# go/google3metadata
+# proto-file: devtools/metadata/metadata.proto
+# proto-message: MetaData
+
+################################################################################
+# Used to test the kokoro pana script via kokoro presubmit.
+
+# Blocking presubmit for CL submission.
+presubmit: {
+  path_expression: "//depot/google3/third_party/dart/google_mobile_ads_mediation/gma_mediation_inmobi/..."
+
+  check_presubmit_service: {
+    base: {
+      id: "CheckInmobiPanaScorePresubmit"
+      disable_tags: "DISABLE_INMOBI_PANA_PRESUBMIT"
+    }
+    failure_status: ERROR
+    include_all_opened_files: true
+    include_deleted_files: true
+    address: "blade:kokoro-presubmit"
+    options:
+      "job=gma-sdk/flutter-mediation-adapters/presubmit,"
+      "build_request="
+      " env_vars { key: 'ENV_VAR_PATH_DIR' value: 'piper/google3/third_party/dart/google_mobile_ads_mediation/gma_mediation_inmobi'}"
+      " env_vars { key: 'ENV_VAR_PANA_SCORE' value: '120'}"
+    action: SUBMIT
+    streaming: true
+    timeout: 14400  # 4 hours which is the max allowed
+  }
+}
+
+# Non-blocking asynchronous presubmit for CL review.
+presubmit: {
+  path_expression: "//depot/google3/third_party/dart/google_mobile_ads_mediation/gma_mediation_inmobi/..."
+
+  check_presubmit_service: {
+    base: {
+      id: "CheckInmobiPanaScorePresubmit"
+      disable_tags: "DISABLE_INMOBI_PANA_PRESUBMIT"
+    }
+    failure_status: ERROR
+    include_all_opened_files: true
+    include_deleted_files: true
+    address: "blade:kokoro-presubmit"
+    options:
+      "job=gma-sdk/flutter-mediation-adapters/presubmit,"
+      "build_request="
+      " env_vars { key: 'ENV_VAR_PATH_DIR' value: 'piper/google3/third_party/dart/google_mobile_ads_mediation/gma_mediation_inmobi'}"
+      " env_vars { key: 'ENV_VAR_PANA_SCORE' value: '120'}"
+    action: REVIEW
+    streaming: false
+  }
+}
+################################################################################
