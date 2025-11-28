@@ -33,7 +33,7 @@ android {
         namespace 'io.flutter.plugins.googlemobileads.mediation.gma_mediation_inmobi'
     }
 
-    compileSdk 33
+    compileSdk 34
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_11
